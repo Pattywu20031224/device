@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card">
+  <div class="card-header">
+    <a href="{% url 'borrower_view' borrower.id %}">{{ borrower.realname }}</a>
+    借用中的設備
+  </div>
+  <div class="card-body">
+    {% for log in borrowing %}
+    <div>
+      {{ log.checkout|date:"Y/m/d H:i" }}
+      <a href="{% url 'equip_view' log.equip.id %}">{{ log.equip.SerialNumber }}</a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<hr>
+<div class="card">
+  <div class="card-header">
+    <form action=""  method="get">
+      <div class="form-inline form-group">
+        <label>查詢設備：</label>
+        <input type="text" name="query" class="form-control" placeholder="請輸入關鍵字..." value="{{ query }}"/>
+        <input type="submit" class="form-control btn btn-primary" value="送出"/>
+      </div> 
+    </form>
+</div>
+<div id="equip-list" class="card-body card-group">
+  {% for equip in equip_list %}
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="card-title">
+        <a href="{% url 'checkout_log' borrower.id equip.id %}">{{ equip.SerialNumber }}</a>
+      </div>
+      <div class="card-text">{{ equip.pattern }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<div class="card-footer">
+  {% include "pagination.html" %}
+</div>
+</div>
+{% endblock %}

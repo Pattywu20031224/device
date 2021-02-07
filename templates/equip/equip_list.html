@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mb-1">
+  <a href="{% url 'equip_add' %}" class="btn btn-sm btn-primary">
+    <i class="fas fa-plus">新增設備</i> 
+  </a>
+</div>
+<div id="equip-list" class="card-group">
+  {% for equip in equip_list %}
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <div class="card-title">
+        <a href="{% url 'equip_view' equip.id %}">{{ equip.SerialNumber }}</a>
+      </div>
+      <div class="card-text">{{ equip.pattern }}</div>
+      <div class="card-text">{{ equip.PropertyNumber }}</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% include "pagination.html" %}
+{% endblock %}

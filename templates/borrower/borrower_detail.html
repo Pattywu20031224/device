@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div id="borrower-detail">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">
+          {{ borrower.realname }}
+        </div>
+        <table class="table table-sm">
+          <tr>
+            <th>電話</th>
+            <td>{{ borrower.tel }}</td>
+          </tr>
+          <tr>
+            <th>電子信箱</th>
+            <td>{{ borrower.email }}</td>
+          </tr>
+          <tr>
+            <th>身分</th>
+            <td>{{ borrower.identify }}</td>
+          </tr>
+          <tr>
+            <th>職稱</th>
+            <td>{{ borrower.work }}</td>
+          </tr>
+          <tr>
+            <th>任教科目</th>
+            <td>{{ borrower.subject }}</td>
+          </tr>
+          <tr>
+            <th>連絡電話</th>
+            <td>{{ borrower.tel }}</td>
+          </tr>
+          <tr>
+            <th>狀態</th>
+            <td>{{ borrower.state }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">借用紀錄</div>
+        <ul class="list-group">
+          {% for log in log_list %}
+          <li class="list-group-item">
+            <div>
+              <span class="badge">
+              {{ log.checkout|date:"Y/m/d H:i" }}
+              <i class="fas fa-arrow-alt-circle-right"></i>
+              </span>
+              {% if log.returned %}
+                <span class="badge">
+                  {{ log.returned|date:"Y/m/d H:i" }}
+                </span>
+              {% else %}
+                <span class="badge badge-warning">借用中</span>
+              {% endif %}
+            </div>
+            <div>
+              <a href="{% url 'equip_view' log.equip.id %}">
+                {{ log.equip.SerialNumber }}
+              </a>
+            </div>
+          </li>
+          {% empty %}
+          <li class="list-group-item">無</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

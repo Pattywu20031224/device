@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="mb-1">
+  <a href="{% url 'borrower_add' %}" class="btn btn-sm btn-primary">
+    <i class="fas fa-plus"></i> 新增使用者
+  </a>
+</div>
+<div id="borrower-list">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th>姓名</th><th>電話</th><th>電子信箱</th><th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for borrower in borrower_list %}
+      <tr>
+        <td>
+          <a href="{% url 'borrower_view' borrower.id %}">{{ borrower.realname }}</a>
+        </td>
+        <td>{{ borrower.tel }}</td>
+        <td>{{ borrower.email }}</td>
+        <td>
+          <a href="{% url 'borrower_delete' borrower.id %}" class="btn btn-sm btn-danger">刪除</a>
+          <a href="{% url 'borrower_edit' borrower.id %}" class="btn btn-sm btn-primary">修改</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% include "pagination.html" %}
+{% endblock %}

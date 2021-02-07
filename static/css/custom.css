@@ -1,0 +1,11 @@
+#equip-list .card-body {
+    padding: 5pt;
+    font-size: 11pt;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+#equip-list .card {
+    flex: 0 0 20%;
+}

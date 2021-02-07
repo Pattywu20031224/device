@@ -1,0 +1,42 @@
+<!-- Navbar begin //-->
+<nav class="navbar navbar-expand-md navbar-dark bg-info mb-2">
+    <!-- 網站標誌 -->
+    <div class="navbar-brand">設備借用管理系統</div>
+    <!-- 在小螢幕的設備上顯示可展開/收合導覽選單的按鈕 -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!-- 導覽列選單內容(可收合) -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        {% if user.is_authenticated %}
+        <a href="{% url 'equip_list' %}" class="nav-link">
+            <i class="fas fa-equip"></i> 設備列表
+          </a>
+        </li>
+        <li class="nav-item">
+        <li class="nav-item">
+            <a href="{% url 'borrower_list' %}" class="nav-link">
+                <i class="fas fa-equip-borrower"></i> 使用者列表
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url 'log_list' %}" class="nav-link">
+                <i class="fas fa-list"></i> 借用紀錄
+              </a>
+            </li>
+          <a href="{% url 'logout' %}" class="nav-link">
+            <i class="fas fa-sign-out-alt"></i> 登出 {{ user.username }}
+          </a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a href="{% url 'login' %}" class="nav-link">
+            <i class="fas fa-sign-in-alt"></i>登入
+          </a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+  <!-- Navbar end //-->
