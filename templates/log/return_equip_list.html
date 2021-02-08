@@ -26,6 +26,11 @@
           <tr>
             <td>{{ log.checkout|date:"Y/m/d H:i" }}</td>
             <td>
+              <a href="{% url 'equip_view' log.equip.id %}">
+                {{ log.equip.SerialNumber }}
+              </a>
+            </td>
+            <td>
               <a href="{% url 'borrower_view' log.borrower.id %}">
                 {{ log.borrower.realname }}
               </a>

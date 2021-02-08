@@ -20,7 +20,7 @@ class BorrowerView(LoginRequiredMixin, DetailView):   # 檢視讀者
         ctx = super().get_context_data(**kwargs)
         ctx['log_list'] = Log.objects.filter(
             borrower=self.object
-        ).order_by('-id').select_related('book')
+        ).order_by('-id').select_related('equip')
         return ctx
 class BorrowerAdd(LoginRequiredMixin, CreateView):   
     model = Borrower
